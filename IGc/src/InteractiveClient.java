@@ -12,7 +12,7 @@ public class InteractiveClient {
 	public static void captureMethod(int lighting, int orienation, int position, int gesture, int sample,
 			Webcam webcamObject, Dimension size) {
 		int gestureDuration = 3;
-
+		// Checking the eclipse link
 		try {
 			Thread.sleep(2000);
 
