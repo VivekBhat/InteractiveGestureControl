@@ -1,0 +1,7 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Response grammar
+ */
+grammar response;
+public <action> = (okay | no);

@@ -1,0 +1,2 @@
+grammar command;
+public <action> = (ready | quit);
