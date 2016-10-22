@@ -18,7 +18,6 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
 import com.github.sarxos.webcam.Webcam;
 
 public class mainWindow extends JFrame {
@@ -30,15 +29,18 @@ public class mainWindow extends JFrame {
 	JLabel label2;
 	JLabel label3;
 	JLabel label4;
+	JLabel label5;
 	JSpinner spinner0;
 	JSpinner spinner1;
 	JSpinner spinner2;
 	JSpinner spinner3;
 	JSpinner spinner4;
+	JSpinner spinner5;
 	JButton but0;
 	static Webcam webcam;
 	static Dimension size;
 	int samplesPerPosition = 3;
+
 
 	public static void main(String args[]) {
 
@@ -126,6 +128,18 @@ public class mainWindow extends JFrame {
 		gbcpanel0.anchor = GridBagConstraints.NORTH;
 		gbpanel0.setConstraints(label4, gbcpanel0);
 		panel0.add(label4);
+		
+		label5 = new JLabel("Subject");
+		gbcpanel0.gridx = 2;
+		gbcpanel0.gridy = 18;
+		gbcpanel0.gridwidth = 7;
+		gbcpanel0.gridheight = 2;
+		gbcpanel0.fill = GridBagConstraints.BOTH;
+		gbcpanel0.weightx = 1;
+		gbcpanel0.weighty = 1;
+		gbcpanel0.anchor = GridBagConstraints.NORTH;
+		gbpanel0.setConstraints(label5, gbcpanel0);
+		panel0.add(label5);
 
 		SpinnerModel sm0 = new SpinnerNumberModel(1, 1, 2, 1); // default
 																// value,lower
@@ -216,10 +230,28 @@ public class mainWindow extends JFrame {
 		gbcpanel0.anchor = GridBagConstraints.NORTH;
 		gbpanel0.setConstraints(spinner4, gbcpanel0);
 		panel0.add(spinner4);
+		
+		SpinnerModel sm5 = new SpinnerNumberModel(1, 1, 1000, 1); // default
+		// value,lower
+		// bound,upper
+		// bound,increment
+		// by
+		
+		spinner5 = new JSpinner(sm5);
+		gbcpanel0.gridx = 12;
+		gbcpanel0.gridy = 18;
+		gbcpanel0.gridwidth = 5;
+		gbcpanel0.gridheight = 2;
+		gbcpanel0.fill = GridBagConstraints.BOTH;
+		gbcpanel0.weightx = 1;
+		gbcpanel0.weighty = 0;
+		gbcpanel0.anchor = GridBagConstraints.NORTH;
+		gbpanel0.setConstraints(spinner5, gbcpanel0);
+		panel0.add(spinner5);
 
 		but0 = new JButton("Record");
 		gbcpanel0.gridx = 7;
-		gbcpanel0.gridy = 18;
+		gbcpanel0.gridy = 21;
 		gbcpanel0.gridwidth = 6;
 		gbcpanel0.gridheight = 2;
 		gbcpanel0.fill = GridBagConstraints.BOTH;
@@ -233,10 +265,10 @@ public class mainWindow extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Call recording code.
+				//lighting, orienation, position, gesture, sample, subjectID
 
 				InteractiveClient.captureMethod((Integer) spinner0.getValue(), (Integer) spinner1.getValue(),
-						(Integer) spinner2.getValue(), (Integer) spinner4.getValue(), (Integer) spinner3.getValue(),
-						webcam, size);
+						(Integer) spinner2.getValue(), (Integer) spinner4.getValue(), (Integer) spinner3.getValue(), (Integer) spinner5.getValue(), webcam, size);
 				int sampleNumber = (Integer) (spinner3.getValue());
 				if (sampleNumber < 3) {
 					sampleNumber++;

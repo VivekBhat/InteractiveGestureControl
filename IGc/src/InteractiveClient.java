@@ -9,23 +9,26 @@ import com.github.sarxos.webcam.Webcam;
 public class InteractiveClient {
 	private static String filename = null;
 
-	public static void captureMethod(int lighting, int orienation, int position, int gesture, int sample,
+	public static void captureMethod(int lighting, int orienation, int position, int gesture, int sample, int subjectID,
 			Webcam webcamObject, Dimension size) {
 		int gestureDuration = 3;
 
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(300);
 
-			voce.SpeechInterface.synthesize("Begin");
-			Thread.sleep(2000);
+			
+			String timestamp = new Date(System.currentTimeMillis() + 5000).toString();
 
-			contactListener("START" + lighting + orienation + position + gesture + sample);
-			String timestamp = new Date(System.currentTimeMillis() + 3000).toString();
 			filename = timestamp + "_L" + lighting + "_O" + orienation + "_P" + position + "_G" + gesture + "_S"
-					+ sample;
+					+ sample + "_ID" + subjectID;
 			WebcamCapture wc = new WebcamCapture(filename, webcamObject, size);
 			new Thread(wc).start();
-
+			voce.SpeechInterface.synthesize("Begin");
+			Thread.sleep(700);
+			
+			contactListener("START" + lighting + orienation + position + gesture + sample + subjectID);
+			
+			
 			Thread.sleep(gestureDuration * 1000);
 			voce.SpeechInterface.synthesize("Stop");
 
